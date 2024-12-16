@@ -1,0 +1,15 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<h1>{{ title }}</h1>
+<hr />
+<div class="video-item">
+    <h2>Жесть орк программист</h2>
+    <VIDEO src="/media/orc.mp4" controls="controls" width="400" height="300" poster="/media/poster.jpg"></VIDEO>
+</div>
+<hr />
+<div class="video-item">
+    <h2>Цифры как в матрице</h2>
+    <VIDEO src="/media/proga.mp4" controls="controls" width="400" height="300" poster="/media/poster2.jpg"></VIDEO>
+</div>
+{% endblock %}

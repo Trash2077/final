@@ -1,0 +1,100 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+    {% if form != none %}
+
+<style>
+    .submit-btn {
+        background-color: #4CAF50; /* Зеленый цвет */
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease; /* Плавный переход цвета */
+    }
+
+    .input-field input:focus,
+    .input-field select:focus,
+    .input-field textarea:focus {
+        background-color: #e0f7fa; /* Светло-голубой цвет при фокусе */
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const submitBtn = document.querySelector('.submit-btn');
+
+        submitBtn.addEventListener('mouseover', function () {
+            submitBtn.style.backgroundColor = '#45a049'; // Темно-зеленый цвет при наведении
+        });
+
+        submitBtn.addEventListener('mouseout', function () {
+            submitBtn.style.backgroundColor = '#4CAF50'; // Оригинальный зеленый цвет
+        });
+
+        const inputFields = document.querySelectorAll('.input-field input, .input-field select, .input-field textarea');
+
+        inputFields.forEach(field => {
+            field.addEventListener('focus', function () {
+                this.style.backgroundColor = '#e0f7fa'; // Светло-голубой цвет при фокусе
+            });
+
+            field.addEventListener('blur', function () {
+                this.style.backgroundColor = ''; // Возвращаем оригинальный цвет
+            });
+        });
+    });
+</script>
+
+<h2>Отправьте пожалуйста заполненную анкету</h2>
+<div>
+    <form method="post">
+        {% csrf_token %}
+        <div class="input-field">
+            <label for="{{ form.name.id_for_label }}">{{ form.name.label }}</label>
+            {{ form.name }}<br><br>
+
+            <label for="{{ form.city.id_for_label }}">{{ form.city.label }}</label>
+            {{ form.city }}<br>
+
+            
+
+            <label for="{{ form.job.id_for_label }}">{{ form.job.label }}</label>
+            {{ form.job }}<br><br>
+
+            
+
+            <label for="{{ form.notice.id_for_label }}">{{ form.notice.label }}</label>
+            {{ form.notice }}<br><br>
+
+            <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
+            {{ form.email }}<br><br>
+
+            <label for="{{ form.message.id_for_label }}">{{ form.message.label }}</label>
+            {{ form.message }}<br><br>
+        </div>
+        <input type="submit" value="Отправить" class="submit-btn">
+    </form>
+</div>
+    {% else %}
+<br />
+<h2>Благодарим за предоставленную информацию!</h2>
+<h3>Вы сообщили о себе следующее:</h3>
+<ul>
+    <li><span>Имя:</span> {{ data.name }}</li>
+    <li><span>Город:</span> {{ data.city }}</li>
+    
+    <li><span>Работа:</span> {{ data.job }}</li>
+    
+    <li>
+        <span>Получать новости сайта на e-mail:</span>
+        {{ data.notice }}
+    </li>
+    <li><span>Ваш e-mail:</span> {{ data.email }}</li>
+    <li><span>Информация о себе:</span> {{ data.message }}</li>
+</ul>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "app/layout.html" %}
+
+{% block title %}Корзина{% endblock %}
+
+{% block content %}
+<div class="cart-section">
+    <h1>Корзина</h1>
+    <ul class="cart-items-list">
+        {% for item in cart.items.all %}
+        <li class="cart-item">
+            <span class="product-name">{{ item.product.name }}</span>
+            <span class="product-quantity">{{ item.quantity }} шт.</span>
+        </li>
+        {% endfor %}
+    </ul>
+    <form action="{% url 'checkout' %}" method="post" class="checkout-form">
+        {% csrf_token %}
+        <button type="submit" class="checkout-button">Купить</button>
+    </form>
+</div>
+{% endblock %}

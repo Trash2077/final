@@ -1,0 +1,24 @@
+{% extends "app/layout.html" %}
+
+{% block title %}Управление заказами{% endblock %}
+
+{% block content %}
+<div class="order-management">
+    <h1>Управление заказами</h1>
+    <ul class="order-list">
+        {% for order in orders %}
+        <li class="order-item">
+            <div class="order-info">
+                <span class="order-id">Заказ {{ order.id }}</span>
+                <span class="order-user">{{ order.user.username }}</span>
+                <span class="order-status">{{ order.status }}</span>
+            </div>
+            <form action="{% url 'delete_order' order.id %}" method="post" class="delete-form">
+                {% csrf_token %}
+                <button type="submit" class="delete-button">Удалить</button>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

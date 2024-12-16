@@ -1,0 +1,21 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<h2>Обратная связь</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Отправить</button>
+</form>
+
+{% if submitted %}
+<h3>Спасибо за ваш отзыв!</h3>
+<p>Ваши данные:</p>
+<ul>
+    {% for field, value in submitted.items %}
+    <li><strong>{{ field }}:</strong> {{ value }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endblock %}

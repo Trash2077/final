@@ -1,0 +1,18 @@
+<!-- catalog/catalog.html -->
+{% extends "app/layout.html" %}
+
+{% block title %}Каталог{% endblock %}
+{% load static %}
+
+{% block content %}
+<div class="catalog-section">
+    <h1>Каталог</h1>
+    <ul class="category-list">
+        {% for category in categories %}
+        <li class="category-item">
+            <a href="{% url 'category_detail' category.id %}" class="category-link">{{ category.name }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

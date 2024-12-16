@@ -1,0 +1,15 @@
+<!-- catalog/add_to_cart.html -->
+{% extends "app/layout.html" %}
+
+{% block title %}Добавить в корзину{% endblock %}
+
+{% block content %}
+<div class="add-to-cart-section">
+    <h1>Добавить в корзину</h1>
+    <form action="{% url 'add_to_cart' product.id %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="add-to-cart-button">Добавить в корзину</button>
+    </form>
+</div>
+{% endblock %}

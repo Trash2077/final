@@ -1,0 +1,16 @@
+{% extends "app/layout.html" %}
+
+{% block title %}Новости{% endblock %}
+
+{% block content %}
+<h1>Новости</h1>
+<ul>
+    {% for news_item in news %}
+    <li>
+        <h2>{{ news_item.title }}</h2>
+        <p>{{ news_item.content }}</p>
+        <p><small>Опубликовано: {{ news_item.created_at }}</small></p>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

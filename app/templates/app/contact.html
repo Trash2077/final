@@ -1,0 +1,18 @@
+﻿{% extends "app/layout.html" %}
+
+{% block content %}
+<div class="contact-section">
+    <h2>{{ title }}.</h2>
+    <p>{{ message }}</p>
+
+    <address class="contact-info">
+        <strong>Адрес:</strong> Ватикан, Ватиканские сады, Папская академия наук<br />
+        <abbr title="Телефон">Т:</abbr> 06 698123456
+    </address>
+
+    <address class="contact-info">
+        <strong>Поддержка:</strong> <a href="mailto:Support@example.com">Support@example.ru</a><br />
+        <strong>Реклама:</strong> <a href="mailto:Marketing@example.com">Marketing@example.ru</a>
+    </address>
+</div>
+{% endblock %}
