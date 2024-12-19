@@ -232,7 +232,7 @@ def product_detail(request, product_id):
     product = get_object_or_404(Product, id=product_id)
     return render(request, 'app/product_detail.html', {'product': product})
 
-@user_passes_test(lambda u: u.is_staff)
+
 def delete_order(request, order_id):
     order = get_object_or_404(Order, id=order_id)
     if request.method == 'POST':
@@ -268,7 +268,7 @@ def my_orders(request):
     orders = Order.objects.filter(user=request.user)
     return render(request, 'app/my_orders.html', {'orders': orders})
 
-@user_passes_test(lambda u: u.is_staff)
+
 def manage_orders(request):
     orders = Order.objects.all()
     return render(request, 'app/manage_orders.html', {'orders': orders})
